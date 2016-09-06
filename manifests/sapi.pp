@@ -35,7 +35,7 @@ define php::sapi (
   $ensure,
   $priority,
 ) {
-  assert_private("This is a privete type and should not be used on its own.")
+  # assert_private("This is a privete type and should not be used on its own.")
   include php::apache::params
   include php::fpm::params
   case $title {

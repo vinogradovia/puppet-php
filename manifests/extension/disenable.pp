@@ -54,7 +54,7 @@ define php::extension::disenable (
     default  => 'php5enmod'
   }
 # same as above
-  $unless = $ensure ? {
+  $unless_cmd = $ensure ? {
     'absent' => 'test ! -e',
     default  => 'test -e',
   }
@@ -65,7 +65,7 @@ define php::extension::disenable (
   }
 # extension class should be responsible for service notification
   exec { "${command} -s ${sapi} ${extension}":
-    unless  => "${unless} /etc/php5/${sapi}/conf.d/${priority}-${extension}.ini",
+    unless  => "${unless_cmd} /etc/php5/${sapi}/conf.d/${priority}-${extension}.ini",
     require => Exec["priority_${sapi}_${extension}"]
   }
 
